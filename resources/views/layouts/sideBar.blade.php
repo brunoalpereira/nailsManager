@@ -1,5 +1,4 @@
 
-  @include('layouts.styles')
   <body>
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
