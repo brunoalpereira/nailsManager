@@ -1,5 +1,5 @@
-<body>
 
+<!-- sideBar-->
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
         <div class="nano">
             <div class="nano-content">
@@ -38,4 +38,43 @@
         </div>  
     </div>
     <!-- /# sidebar -->
-</body>
+
+    <!-- Nav Menu -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left">
+                        <div class="hamburger sidebar-toggle">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                    <div class="float-right">
+                       
+                        <div class="dropdown dib">
+                            <div class="header-icon" data-toggle="dropdown">
+                                <span class="user-avatar">
+                                    <i class="ti-angle-down f-s-10"></i>
+                                </span>
+                                <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-content-body">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="ti-power-off"></i>
+                                                    <span>Sair</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /# navMenu -->
