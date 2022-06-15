@@ -28,4 +28,27 @@ class ServicesController extends Controller
     }
 
 
+    public function edit($id) {
+
+        $services = Services::findOrFail($id);
+
+        return view('services.edit', ['services' => $services]);
+
+    }
+
+
+
+    public function update(Request $request,$id) {
+
+        $services = Services::where('id', $id)->first();
+
+        $services->description = $request->description;
+        $services->name = $request->name;
+        $services->value = $request->value;
+
+        $services->save();
+        return redirect('/')->with('msg', 'Serviço editado com sucesso!');
+    }
+ 
+
 }
