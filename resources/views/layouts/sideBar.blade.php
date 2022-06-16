@@ -22,7 +22,7 @@
                         <i class="far fa-user"></i> Usuários </a></li>
 
                         <li class="label"></li>
-                        <li><a href="#">
+                        <li><a href="/services">
                         <i class="fas fa-stream"></i> Serviços </a></li>
 
                         <li class="label"></li>
