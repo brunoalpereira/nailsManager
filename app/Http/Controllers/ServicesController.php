@@ -24,7 +24,7 @@ class ServicesController extends Controller
         
         $service->save();
 
-        return redirect('/')->with('msg', 'Serviço criado com sucesso!');
+        return redirect('/services')->with('msg', 'Serviço criado com sucesso!');
     }
 
 
@@ -47,7 +47,7 @@ class ServicesController extends Controller
         $services->value = $request->value;
 
         $services->save();
-        return redirect('/')->with('msg', 'Serviço editado com sucesso!');
+        return redirect('/services')->with('msg', 'Serviço editado com sucesso!');
     }
  
 
