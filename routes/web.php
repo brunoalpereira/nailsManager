@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
+use App\Models\Services;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/services/create',[ServicesController::class, 'create']);
 Route::post('/services', [ServicesController::class, 'store']);
 Route::get('/services/edit/{id}', [ServicesController::class, 'edit']);
 Route::put('/services/update/{id}', [ServicesController::class, 'update']);
+Route::get('/services', [ServicesController::class,'index']);
+Route::delete('/services/delete',[ServicesController::class,'delete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
