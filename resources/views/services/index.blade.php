@@ -24,34 +24,42 @@
                         <span class="text">Novo</span>
                     </a>
                 </div>     
-                <div class="card mt-5">
+                @foreach($services as $service)
+                <div class="card mt-2">
                     <div class="card-body">
                         <div class="d-flex flex-column flex-md-row justify-content-between">
-                            <a class="card-title" href="/services/edit/">Card title</a>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+                            <a class="card-title" href="/services/edit/{{ $service->id }}">{{ $service->name }}</a>
+                            <h5 class="card-subtitle">Valor
+                            <span class="card-text">{{ 'R$'. $service->value}}</span>
+                            </h5> 
+
+                        
+                            <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>  -->
                            
                             <div class="d-grid  d-md-flex justify-content-md-end">
 
-                            <a class="btn btn-secondary mx-2" href="/services/edit">
+                            <a class="btn btn-secondary mx-2" href="/services/edit/{{ $service->id }}">
                                     <span class="icon text-white-50">
                                     <i class="fas fa-edit"></i>
                                     </span>
                                     <span class="text">Editar</span>
                                 </a>
-                                <a class="btn btn-danger" href="/services/create">
-                                    <span class="icon text-white-50">
-                                    <i class="fas fa-trash"></i>
-                                    </span>
-                                    <span class="text">Excluir</span>
-                                </a>
-                            </div>
 
-                            
+                                <form action="/services/delete/{{ $service->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                                    <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon>
+                                        <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Excluir</span></button>
+                                </form>
+                            </div>                            
                         </div>
                     </div>
                            
                 </div>
+                @endforeach
             </div>
         </div>
         </div>
