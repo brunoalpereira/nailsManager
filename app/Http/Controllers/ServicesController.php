@@ -49,7 +49,7 @@ class ServicesController extends Controller
         $services->save();
         return redirect('/services')->with('msg', 'Serviço editado com sucesso!');
     }
- 
+
 
     public function index(){
 
@@ -59,4 +59,9 @@ class ServicesController extends Controller
             ['services'=> $services]
         );
     }
+
+    public function delete($id){
+        Services::findOrFail($id)->delete();
+    }
+
 }
