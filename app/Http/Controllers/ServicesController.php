@@ -51,4 +51,12 @@ class ServicesController extends Controller
     }
  
 
+    public function index(){
+
+        $services = Services::all();
+
+        return view('services.index',
+            ['services'=> $services]
+        );
+    }
 }
