@@ -24,7 +24,7 @@ Route::post('/services', [ServicesController::class, 'store']);
 Route::get('/services/edit/{id}', [ServicesController::class, 'edit']);
 Route::put('/services/update/{id}', [ServicesController::class, 'update']);
 Route::get('/services', [ServicesController::class,'index']);
-Route::delete('/services/delete',[ServicesController::class,'delete']);
+Route::delete('/services/delete/{id}',[ServicesController::class,'delete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
