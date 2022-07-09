@@ -26,6 +26,12 @@ Route::put('/services/update/{id}', [ServicesController::class, 'update']);
 Route::get('/services', [ServicesController::class,'index']);
 Route::delete('/services/delete/{id}',[ServicesController::class,'delete']);
 
+Route::get('/personal-infos/create',[PersonalInfosController::class, 'create']);
+Route::post('/personal-infos', [PersonalInfosController::class, 'store']);
+Route::get('/personal-infos/edit/{id}', [PersonalInfosController::class, 'edit']);
+Route::put('/personal-infos/update/{id}', [PersonalInfosController::class, 'update']);
+Route::get('/personal-infos', [PersonalInfosController::class,'index']);
+Route::delete('/personal-infos/delete/{id}',[PersonalInfosController::class,'delete']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
