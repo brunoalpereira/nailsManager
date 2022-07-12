@@ -19,7 +19,7 @@
                     <article class="card-body">
                         <h4 class="card-title text-center mb-4 mt-1">Cadastrar Informações</h4>
                         <hr>
-                        <form action="personal-infos" id="form-create-personal infos" method="POST" enctype="multipart/form-data">
+                        <form action="/personal-infos" id="form-create-personal infos" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-lg-12">
                             <div class="form-row">
@@ -53,7 +53,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fas fa-house-user"></i> </span>
                                     </div>
-                                    <input class="form-control" placeholder="Numero Residencia" id="address-number" name="address-number">
+                                    <input class="form-control" placeholder="Numero Residencia" id="address_number" name="address_number">
                                 </div>
                             </div>
                             </div>
@@ -100,5 +100,5 @@
 
 
 
-<script type="text/javascript" src="{{url('assets\js\personal-infos\index.js') }}"></script>
+<!-- <script type="text/javascript" src="{{url('assets\js\personal-infos\index.js') }}"></script> -->
 @endsection
