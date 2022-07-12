@@ -10,8 +10,8 @@ class PersonalInfosController extends Controller
 
   public function create()
   {
-        return view('personalInfos.create');
-    }
+    return view('personalInfos.create');
+  }
 
   public function edit($id)
   {
@@ -53,6 +53,7 @@ class PersonalInfosController extends Controller
     return redirect('/personal-infos')->with('msg', 'Informações editadas com sucesso!');
   }
 
+
   public function index()
   {
 
@@ -62,5 +63,13 @@ class PersonalInfosController extends Controller
       'personalInfos.index',
       ['personalInfos' => $personalInfos]
     );
-    }
+  }
+
+  public function delete($id)
+  {
+    UsersPersonalInfo::findOrFail($id)->delete();
+
+    return redirect('/personal-infos')->with('msg', 'Informações excluidas com sucesso!');
+  }
+
 }
