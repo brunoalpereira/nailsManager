@@ -53,5 +53,14 @@ class PersonalInfosController extends Controller
     return redirect('/personal-infos')->with('msg', 'Informações editadas com sucesso!');
   }
 
+  public function index()
+  {
+
+    $personalInfos = UsersPersonalInfo::all();
+
+    return view(
+      'personalInfos.index',
+      ['personalInfos' => $personalInfos]
+    );
     }
 }
