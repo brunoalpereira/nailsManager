@@ -13,6 +13,14 @@ class PersonalInfosController extends Controller
         return view('personalInfos.create');
     }
 
+  public function edit($id)
+  {
+
+    $personalInfos = UsersPersonalInfo::findOrFail($id);
+
+    return view('personalInfos.edit', ['personalInfos' => $personalInfos]);
+  }
+
   public function store(Request $request)
   {
 
@@ -29,6 +37,21 @@ class PersonalInfosController extends Controller
     return redirect('/personal-infos')->with('msg', 'Informações gravado com sucesso!');
   }
 
-      return view('personalInfos.index' );
+  public function update(Request $request, $id)
+  {
+
+    $personalInfos = UsersPersonalInfo::where('id', $id)->first();
+
+    $personalInfos->id_user = $request->user;
+    $personalInfos->address = $request->address;
+    $personalInfos->complement = $request->complement;
+    $personalInfos->address_number = $request->address_number;
+    $personalInfos->cep = $request->cep;
+    $personalInfos->phone = $request->phone;
+
+    $personalInfos->save();
+    return redirect('/personal-infos')->with('msg', 'Informações editadas com sucesso!');
+  }
+
     }
 }
