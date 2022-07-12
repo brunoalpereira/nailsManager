@@ -5,40 +5,43 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Services;
-use App\Models\User;
+
 
 class ServicesController extends Controller
 {
-    public function create() {
+    public function create()
+    {
         return view('services.create');
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $service = new Services;
 
         $service->name = $request->name;
         $service->value = $request->value;
         $service->description = $request->description;
-        
+
         $service->save();
 
         return redirect('/services')->with('msg', 'Serviço criado com sucesso!');
     }
 
 
-    public function edit($id) {
+    public function edit($id)
+    {
 
         $services = Services::findOrFail($id);
 
         return view('services.edit', ['services' => $services]);
-
     }
 
 
 
-    public function update(Request $request,$id) {
+    public function update(Request $request, $id)
+    {
 
         $services = Services::where('id', $id)->first();
 
@@ -51,17 +54,22 @@ class ServicesController extends Controller
     }
 
 
-    public function index(){
+    public function index()
+    {
 
         $services = Services::all();
 
-        return view('services.index',
-            ['services'=> $services]
+        return view(
+            'services.index',
+            ['services' => $services]
         );
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         Services::findOrFail($id)->delete();
+
+        return redirect('/services')->with('msg', 'Serviço excluido com sucesso!');
     }
 
 }
