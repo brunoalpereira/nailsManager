@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
-use App\Models\Services;
+use App\Http\Controllers\PersonalInfosController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,12 @@ Route::get('/personal-infos/edit/{id}', [PersonalInfosController::class, 'edit']
 Route::put('/personal-infos/update/{id}', [PersonalInfosController::class, 'update']);
 Route::get('/personal-infos', [PersonalInfosController::class,'index']);
 Route::delete('/personal-infos/delete/{id}',[PersonalInfosController::class,'delete']);
+Route::get('/schedules/create',[ScheduleController::class, 'create']);
+Route::post('/schedules', [ScheduleController::class, 'store']);
+Route::get('/schedules/edit/{id}', [ScheduleController::class, 'edit']);
+Route::put('/schedules/update/{id}', [ScheduleController::class, 'update']);
+Route::get('/schedules', [ScheduleController::class,'index']);
+Route::delete('/schedules/cancel/{id}',[ScheduleController::class,'delete']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
