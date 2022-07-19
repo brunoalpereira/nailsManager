@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\PersonalInfosController;
@@ -33,12 +34,21 @@ Route::get('/personal-infos/edit/{id}', [PersonalInfosController::class, 'edit']
 Route::put('/personal-infos/update/{id}', [PersonalInfosController::class, 'update']);
 Route::get('/personal-infos', [PersonalInfosController::class,'index']);
 Route::delete('/personal-infos/delete/{id}',[PersonalInfosController::class,'delete']);
+
 Route::get('/schedules/create',[ScheduleController::class, 'create']);
 Route::post('/schedules', [ScheduleController::class, 'store']);
 Route::get('/schedules/edit/{id}', [ScheduleController::class, 'edit']);
 Route::put('/schedules/update/{id}', [ScheduleController::class, 'update']);
 Route::get('/schedules', [ScheduleController::class,'index']);
 Route::delete('/schedules/cancel/{id}',[ScheduleController::class,'delete']);
+
+Route::get('/attendance/create',[AttendanceController::class, 'create']);
+Route::post('/attendance', [AttendanceController::class, 'store']);
+Route::get('/attendance/edit/{id}', [AttendanceController::class, 'edit']);
+Route::put('/attendance/finish/{id}', [AttendanceController::class, 'update']);
+Route::get('/attendance', [AttendanceController::class,'index']);
+Route::delete('/attendance/cancel/{id}',[AttendanceController::class,'delete']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
