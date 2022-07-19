@@ -13,7 +13,7 @@
                         <i class="far fa-bookmark"></i> Atendimentos </a></li>
 
                 <li class="label"></li>
-                <li><a href="#">
+                <li><a href="/schedules">
                         <i class="fas fa-address-book"></i> Agendamentos </a></li>
 
                 <li><a class="sidebar-sub-toggle">
