@@ -9,7 +9,7 @@
                 </div>
 
                 <li class="label"></li>
-                <li><a href="#">
+                <li><a href="/attendance">
                         <i class="far fa-bookmark"></i> Atendimentos </a></li>
 
                 <li class="label"></li>
