@@ -4,6 +4,7 @@ use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\PersonalInfosController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ScheduleController;
 
 /*
@@ -48,6 +49,13 @@ Route::get('/attendance/edit/{id}', [AttendanceController::class, 'edit']);
 Route::put('/attendance/finish/{id}', [AttendanceController::class, 'update']);
 Route::get('/attendance', [AttendanceController::class,'index']);
 Route::delete('/attendance/cancel/{id}',[AttendanceController::class,'delete']);
+
+Route::get('/roles',[RoleController::class,'index']);
+Route::get('/roles/create',[RoleController::class,'create']);
+Route::post('/roles',[RoleController::class,'store']);
+Route::get('/roles/edit/{id}',[RoleController::class,'edit']);
+Route::put('/roles/update/{id}',[RoleController::class,'update']);
+Route::delete('/roles/delete/{id}',[RoleController::class,'delete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
