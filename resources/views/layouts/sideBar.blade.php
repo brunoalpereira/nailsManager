@@ -26,6 +26,10 @@
                     <ul>
                         <li><a href="/personal-infos"><i class="far fa-address-card"></i>Cadastro Informações</a></li>
                     </ul>
+
+                    <ul>
+                        <li><a href="/roles"><i class="fas fa-briefcase"></i></i>Cadastro de cargos</a></li>
+                    </ul>
                 </li>
 
 
