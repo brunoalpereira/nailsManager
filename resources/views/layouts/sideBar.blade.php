@@ -28,7 +28,11 @@
                     </ul>
 
                     <ul>
-                        <li><a href="/roles"><i class="fas fa-briefcase"></i></i>Cadastro de cargos</a></li>
+                        <li><a href="/roles"><i class="fas fa-briefcase"></i>Cadastro de cargos</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><a href="/permissions"><i class="fas fa-lock"></i>Cadastro de permissões</a></li>
                     </ul>
                 </li>
 
