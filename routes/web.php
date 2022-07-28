@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\PermissionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\PersonalInfosController;
@@ -56,6 +57,13 @@ Route::post('/roles',[RoleController::class,'store']);
 Route::get('/roles/edit/{id}',[RoleController::class,'edit']);
 Route::put('/roles/update/{id}',[RoleController::class,'update']);
 Route::delete('/roles/delete/{id}',[RoleController::class,'delete']);
+
+Route::get('/permissions',[PermissionsController::class,'index']);
+Route::get('/permissions/create',[PermissionsController::class,'create']);
+Route::post('/permissions',[PermissionsController::class,'store']);
+Route::get('/permissions/edit/{id}',[PermissionsController::class,'edit']);
+Route::put('/permissions/update/{id}',[PermissionsController::class,'update']);
+Route::delete('/permissions/delete/{id}',[PermissionsController::class,'delete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
