@@ -46,7 +46,20 @@ class PermissionsController extends Controller
      {
          $permissions = Permission::findOrFail($id);
  
-         return view('permissions.edit', ['permissions' => $permissions]);
+        $oldRoles= DB::table('permissions')
+         ->join('role_has_permissions','permissions.id','=','role_has_permissions.permission_id')
+         ->join('roles', 'role_has_permissions.role_id','=','roles.id')
+         ->select('roles.name',
+                  'roles.id')
+          ->where('permissions.id',$id)
+          ->get()
+          ->toArray();
+
+          $roles = Role::all();
+ 
+        return view('permissions.edit', ['permissions' => $permissions,
+                                          'oldRoles'=>$oldRoles,
+                                        'roles'=>$roles]);
      }
  
      public function update(Request $request, $id)
