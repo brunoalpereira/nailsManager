@@ -27,9 +27,16 @@ class PermissionsController extends Controller
  
      public function store(Request $request)
      {
+
+        $roles = $request->role;
+
          $permissions = new Permission();
    
          $permissions->name = $request->name;   
+     
+         foreach($roles as $role){
+          $permissions->assignRole($role);
+         }
      
          $permissions->save();
          return redirect('/permissions')->with('msg', 'Cargo gravado com sucesso!');
