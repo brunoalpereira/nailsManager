@@ -1,9 +1,16 @@
 @extends('layouts.main')
-@section('title', 'Serviços')
+@section('title', 'Permissões')
+
+
+@section('styles')
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css" rel="stylesheet">
+</link>
 
 @section('scripts')
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @section('content')
 <div class="content-wrap ">
@@ -26,6 +33,17 @@
                                         <input class="form-control" placeholder="Nome" type="text" id="name" name="name">
                                     </div>
 
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                        </div>
+                                        <select id="multiple" class="form-control" name='role[]' placeholder="Selecione cargos para permissão" multiple>
+                                         @foreach($roles as $role)
+                                         <option value="{{$role->id}}">{{$role->name}}</option>
+                                         @endforeach
+                                        </select>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -43,4 +61,6 @@
             </div>
 
         </div>
+
+        <script type="text/javascript" src="{{url('assets\js\permissions\create.js') }}"></script>
 @endsection
