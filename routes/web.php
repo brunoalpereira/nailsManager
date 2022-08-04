@@ -7,6 +7,7 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\PersonalInfosController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\UserRolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\ScheduleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/services/create',[ServicesController::class, 'create']);
@@ -64,6 +65,14 @@ Route::post('/permissions',[PermissionsController::class,'store']);
 Route::get('/permissions/edit/{id}',[PermissionsController::class,'edit']);
 Route::put('/permissions/update/{id}',[PermissionsController::class,'update']);
 Route::delete('/permissions/delete/{id}',[PermissionsController::class,'delete']);
+
+
+Route::get('/user-roles',[UserRolesController::class,'index']);
+Route::get('/user-roles/create',[UserRolesController::class,'create']);
+Route::post('/user-roles',[UserRolesController::class,'store']);
+Route::get('/user-roles/edit/{id}',[UserRolesController::class,'edit']);
+Route::put('/user-roles/update/{id}',[UserRolesController::class,'update']);
+Route::delete('/user-roles/delete/{id}',[UserRolesController::class,'delete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
