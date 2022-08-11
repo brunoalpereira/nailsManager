@@ -1,10 +1,15 @@
 @extends('layouts.main')
 @section('title', 'Informações')
 
+@section('styles')
 
- @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css" rel="stylesheet">
+</link>
+
+@section('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @section('content')
 
 <div class="content-wrap ">
@@ -71,9 +76,11 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-user"></i></span>
                                     </div>
-                                    <select class="form-control" placeholder="Usuario"  id="user" name="user" >
-                                        <option value="1">teste</option>
-                                        <option value="2">require_once</option>
+                                    <select class="form-control"  id="user" name="id_user">
+                                        <option value="0"></option>
+                                        @foreach($users as $user)
+                                         <option value="{{$user->id}}">{{$user->name}}</option>
+                                         @endforeach
                                     </select>
                                 </div>
 
@@ -98,5 +105,5 @@
 
 
 
-<!-- <script type="text/javascript" src="{{url('assets\js\personal-infos\index.js') }}"></script> -->
+<script type="text/javascript" src="{{url('assets\js\personal-infos\edit.js') }}"></script>
 @endsection
