@@ -5,17 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Schedules;
+use App\Models\Services;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class ScheduleController extends Controller
 {
     public function create()
     {
-      return view('schedules.create');
+      $services = Services::all();
+
+      $users = User::all();
+      return view('schedules.create',
+                 ['services'=> $services,
+                 'users'=>$users]);
     }
 
 
     public function index()
     {
-  
+     
       $schedules = Schedules::all();
 
       return view(
@@ -35,17 +46,37 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
-  
-      $schedules = new Schedules();
-  
-      $schedules->date = $request->date;
-      $schedules->hour = $request->hour;
-      $schedules->user_id = $request->user_id;
-      $schedules->observations = $request->observations;
-      $schedules->status = 'agendado';
 
-  
-      $schedules->save();
+      if($request->user_id == 0 ){
+        $user = Auth::id();
+      } else {
+        $user = $request->user_id;
+      }
+
+      $schedules =DB::table('schedules')
+      ->insertGetId([
+        'date' =>$request->date,
+        'hour' => $request->hour,
+        'user_id' =>$user,
+        'observations' =>$request->observations,
+        'status' => 'agendado',
+        'created_at'=> Carbon::now(),
+        'updated_at'=>Carbon::now()
+      ]);
+
+      $services = $request->services;
+
+      foreach($services as $service){
+        DB::table('services_schedules')
+        ->insert([
+          'service_id' => $service,
+          'schedules_id'=> $schedules,
+          'created_at'=> Carbon::now(),
+          'updated_at'=>Carbon::now()
+        ]);
+      }
+
+
       return redirect('/schedules')->with('msg', 'Informações gravado com sucesso!');
     }
   
