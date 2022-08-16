@@ -44,11 +44,25 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-user"></i></span>
                                     </div>
-                                    <select class="form-control" placeholder="Cliente"  id="user" name="user_id" >
-                                        <option value="1">teste</option>
-                                        <option value="2">require_once</option>
+                                    <select class="form-control"  id="user" name="user_id">
+                                        <option value="0"></option>
+                                        @foreach($users as $user)
+                                         <option value="{{$user->id}}">{{$user->name}}</option>
+                                         @endforeach
                                     </select>
-                            </div>                      
+                            </div>    
+                            
+                            <div class="input-group col-lg-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-pencil"></i></span>
+                                    </div>
+                                    <select id="services" class="form-control" name='services[]' placeholder="Selecione serviços" multiple>
+                                        <option value="0"></option>
+                                        @foreach($services as $service)
+                                         <option value="{{$service->id}}">{{$service->name}}</option>
+                                         @endforeach
+                                    </select>
+                            </div>                
                             
                             <div class="form-group col-lg-12">
                             <div class="form-row">
@@ -79,5 +93,5 @@
 
 
 
-<!-- <script type="text/javascript" src="{{url('assets\js\personal-infos\index.js') }}"></script> -->
+<script type="text/javascript" src="{{url('assets\js\schedules\create.js') }}"></script>
 @endsection
