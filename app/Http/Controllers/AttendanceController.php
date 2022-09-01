@@ -19,7 +19,19 @@ class AttendanceController extends Controller
     public function index()
     {
   
-      $schedules = Schedules::all();
+          $schedules=DB::table('schedules')
+          ->join('users','schedules.user_id','=','users.id')
+          ->select('schedules.id as schedules',
+                    'schedules.date as date',
+                    'schedules.hour as hour',
+                    'users.name as user',
+                    'schedules.status as status')
+          ->where('schedules.deleted_at',null)
+          ->orderByDesc('schedules.date')
+          ->orderByDesc('schedules.hour')
+          ->get()
+          ->toArray();
+        
 
       return view(
         'attendance.index',
