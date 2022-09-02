@@ -29,27 +29,30 @@
                         <div class="card-body">
                             <div class="d-flex flex-column flex-md-row justify-content-between">
 
-                                <a class="card-title col-lg-2" href="/schedules/edit/{{ $schedule->id }}">{{ $schedule->name }}</a>
-                                <label class="card-text col-lg-2" >Valor
-                                <!-- <h6 >{{ 'R$ : '. $schedule->value}}                     -->
-                                </h6> 
+                                <a class="card-title col-lg-2" href="/schedules/edit/{{ $schedule->schedules }}">{{ $schedule->user}}</a>
+                                <label class="card-text col-lg-2" >Data
+                                <h6>{{  date( 'd/m/Y' , strtotime($schedule->date)) }}</h6>
+                                </label>
+
+                                <label class="card-text col-lg-2" >Hora
+                                <h6>{{ $schedule->hour }}</h6>
                                 </label>
                             
                                 <div class="d-grid  d-lg-flex justify-content-lg-end">
                                     <form>
-                                        <a class="btn btn-secondary  mx-2" href="/schedules/edit/{{ $schedule->id }}">
+                                        <a class="btn btn-secondary  mx-2" href="/schedules/edit/{{ $schedule->schedules }}">
                                             <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                             </span>
                                             <span class="text">Editar</span>
                                         </a>
                                     </form>
-                                    <form action="/schedules/cancel/{{ $schedule->id }}" method="POST">
+                                    <form action="/schedules/cancel/{{ $schedule->schedules }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                         <button type="submit" class="btn btn-danger delete-btn">
                                             <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
+                                            <i class="fas fa-cancel"></i>
                                             </span>
                                             <span class="text">Cancelar</span></button>
                                     </form>
