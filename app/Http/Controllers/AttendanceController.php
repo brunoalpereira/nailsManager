@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedules;
+use App\Models\Services;
+use App\Models\ServicesSchedules;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
+
       public function create()
       {
         $services = Services::all();
@@ -16,9 +23,11 @@ class AttendanceController extends Controller
                    ['services'=> $services,
                    'users'=>$users]);
       }
-    public function index()
-    {
   
+  
+      public function index()
+      {
+        
           $schedules=DB::table('schedules')
           ->join('users','schedules.user_id','=','users.id')
           ->select('schedules.id as schedules',
@@ -32,12 +41,12 @@ class AttendanceController extends Controller
           ->get()
           ->toArray();
         
-
-      return view(
-        'attendance.index',
-        ['schedules' => $schedules]
-      );
-    }
+  
+        return view(
+          'attendance.index',
+          ['schedules' => $schedules]
+        );
+      }
   
   
   
@@ -83,7 +92,8 @@ class AttendanceController extends Controller
   
   
         return redirect('/attendance')->with('msg', 'Informações gravado com sucesso!');
-}
+      }
+    
       public function update(Request $request, $id)
       {
   
@@ -165,3 +175,4 @@ class AttendanceController extends Controller
       
   }
   
+
