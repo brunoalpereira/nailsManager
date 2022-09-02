@@ -134,3 +134,34 @@ class AttendanceController extends Controller
         return redirect('/attendance')->with('msg', 'Informações editadas com sucesso!');
       }
     
+  
+  
+      public function edit($id)
+      {
+  
+        $schedules = DB::table('schedules')
+        ->join('services_schedules','schedules.id','services_schedules.schedules_id')
+        ->join('services','services.id','services_schedules.service_id')
+        ->join('users','users.id','schedules.user_id')
+        ->select('schedules.date as date',
+                'schedules.id as id',
+                'schedules.hour as hour',
+                'schedules.user_id as user_id',
+                'users.name as user_name',
+                'schedules.observations as observations',
+                'services.name as service',
+                'services.id as service_id')
+        ->where('schedules.id',$id)
+        ->get();
+  
+        $services = Services::all();
+  
+        $users = User::all();
+  
+          return view('attendance.finish', ['schedules' => $schedules,
+                                        'services' => $services,
+                                        'users'=>$users]);
+      }
+      
+  }
+  
