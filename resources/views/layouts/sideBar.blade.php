@@ -34,6 +34,10 @@
                     <ul>
                         <li><a href="/permissions"><i class="fas fa-lock"></i>Cadastro de permissões</a></li>
                     </ul>
+
+                    <ul>
+                        <li><a href="/users-roles"><i class="fas fa-user-tag"></i>Atribuir cargos</a></li>
+                    </ul>
                 </li>
 
 
