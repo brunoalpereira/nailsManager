@@ -32,13 +32,20 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> <i class="fas fa-pencil"></i> </span>
                                         </div>
-                                        <input class="form-control" placeholder="Nome" type="text" id="name" name="name"  value="{{ $permissions->name }}">
+                                        <input class="form-control  @error('name') is-invalid  @enderror" placeholder="Nome" type="text" id="name" name="name"  value="{{ $permissions->name }}">
+                                        @if ($errors->has('name'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('name')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
                                     </div>
                                     <div class="input-group col-lg-6">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
                                         </div>
-                                        <select id="multiple" class="form-control" name='role[]' placeholder="Selecione cargos para permissão" multiple>
+                                        <select id="multiple" class="form-control @error('role') is-invalid  @enderror" name='role[]' placeholder="Selecione cargos para permissão" multiple>
                                          @foreach($oldRoles as $oldRole)
                                          <option value="{{$oldRole->id}}" { selected }>{{$oldRole->name}}</option>
                                          @endforeach
@@ -47,6 +54,13 @@
                                          <option value="{{$role->id}}">{{$role->name}}</option>
                                          @endforeach
                                         </select>
+                                        @if ($errors->has('role'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('role')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
