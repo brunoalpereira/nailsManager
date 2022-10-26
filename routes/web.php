@@ -55,12 +55,19 @@ Route::put('/schedules/update/{id}', [ScheduleController::class, 'update']);
 Route::get('/schedules', [ScheduleController::class,'index']);
 Route::delete('/schedules/cancel/{id}',[ScheduleController::class,'delete']);
 
+
 Route::get('/attendance/create',[AttendanceController::class, 'create']);
 Route::post('/attendance', [AttendanceController::class, 'store']);
 Route::get('/attendance/edit/{id}', [AttendanceController::class, 'edit']);
 Route::put('/attendance/finish/{id}', [AttendanceController::class, 'update']);
 Route::get('/attendance', [AttendanceController::class,'index']);
-Route::delete('/attendance/cancel/{id}',[AttendanceController::class,'delete']);
+
+    Route::get('/services/create',[ServicesController::class, 'create']);
+    Route::post('/services', [ServicesController::class, 'store']);
+    Route::get('/services/edit/{id}', [ServicesController::class, 'edit']);
+    Route::put('/services/update/{id}', [ServicesController::class, 'update']);
+    Route::get('/services', [ServicesController::class,'index']);
+    Route::delete('/services/delete/{id}',[ServicesController::class,'delete']);
 
 Route::get('/roles',[RoleController::class,'index']);
 Route::get('/roles/create',[RoleController::class,'create']);
