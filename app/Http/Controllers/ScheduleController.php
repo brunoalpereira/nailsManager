@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SchedulesRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Schedules;
@@ -88,7 +89,7 @@ class ScheduleController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(SchedulesRequest $request)
     {
 
       if($request->user_id == 0 ){
@@ -124,7 +125,7 @@ class ScheduleController extends Controller
       return redirect('/schedules')->with('msg', 'Informações gravado com sucesso!');
     }
   
-    public function update(Request $request, $id)
+    public function update(SchedulesRequest $request, $id)
     {
 
       if($request->user_id == 0 ){
