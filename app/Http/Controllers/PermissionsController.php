@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PermissionsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
@@ -29,7 +30,7 @@ class PermissionsController extends Controller
        return view('permissions.create', ['roles' => $roles]);
      }
  
-     public function store(Request $request)
+     public function store(PermissionsRequest $request)
      {
 
         $roles = $request->role;
@@ -66,7 +67,7 @@ class PermissionsController extends Controller
                                         'roles'=>$roles]);
      }
  
-     public function update(Request $request, $id)
+     public function update(PermissionsRequest $request, $id)
      {
       $roles = $request->role;
 
