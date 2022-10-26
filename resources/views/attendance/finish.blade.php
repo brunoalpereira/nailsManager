@@ -29,14 +29,31 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="data" type="date" id="date" name="date"  value="{{ $schedules[0]->date }}">
+                                    <input class="form-control @error('date') is-invalid  @enderror" placeholder="data" type="date" id="date" name="date"  value="{{ $schedules[0]->date }}">
+                                    @if ($errors->has('date'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('date')}}
+
+                                        </strong>
+                                    </span>
+                                        
+                                    @endif
                                 </div>
 
                                 <div class="input-group col-lg-6">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fas fa-clock"></i> </span>
                                     </div>
-                                    <input class="form-control" placeholder="Hora" id="hour" name="hour" type ="time" value="{{ $schedules[0]->hour }}" >
+                                    <input class="form-control @error('hour') is-invalid  @enderror" placeholder="Hora" id="hour" name="hour" type ="time" value="{{ $schedules[0]->hour }}" >
+                                
+                                    @if ($errors->has('hour'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('hour')}}
+
+                                        </strong>
+                                    </span>
+                                        
+                                    @endif
                                 </div>
                             </div>
                             </div>
@@ -46,24 +63,42 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-user"></i></span>
                                     </div>
-                                    <select id="multiple_user" class="form-control" name='user_id' placeholder="Selecione usuario" >
+                                    <select id="multiple_user" class="form-control @error('user_id') is-invalid  @enderror" name='user_id' placeholder="Selecione usuario" >
                                     <option value="{{$schedules[0]->user_id}}" { selected }>{{$schedules[0]->user_name}}</option>
                                         @foreach($users as $user)
                                          <option value="{{$user->id}}">{{$user->name}}</option>
                                          @endforeach
                                     </select>
+
+                                    @if ($errors->has('user_id'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('user_id')}}
+
+                                        </strong>
+                                    </span>
+                                        
+                                    @endif
                             </div>    
                             
                             <div class="input-group col-lg-6">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil"></i></span>
                                     </div>
-                                    <select id="multiple_services" class="form-control" name='services[]' placeholder="Selecione serviços" multiple>
+                                    <select id="multiple_services" class="form-control @error('services') is-invalid  @enderror" name='services[]' placeholder="Selecione serviços" multiple>
                                     <option value="{{$schedules[0]->service_id}}" { selected }>{{$schedules[0]->service}}</option>
                                         @foreach($services as $service)
                                          <option value="{{$service->id}}">{{$service->name}}</option>
                                          @endforeach
                                     </select>
+
+                                    @if ($errors->has('services'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('services')}}
+
+                                        </strong>
+                                    </span>
+                                        
+                                    @endif
                             </div>           
                             
                             <div class="form-group col-lg-12">
@@ -95,5 +130,19 @@
 
 
 
-<script type="text/javascript" src="{{url('assets\js\schedules\edit.js') }}"></script>
+<script>
+
+new SlimSelect({
+    select: '#multiple_services',
+    placeholder: 'Selecione serviço',
+    searchingText:'Pesquisar'
+  })
+
+  new SlimSelect({
+    select: '#multiple_user',
+    placeholder: 'Selecione serviço',
+    searchingText:'Pesquisar'
+  })
+
+</script>
 @endsection

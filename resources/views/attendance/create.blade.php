@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Agendamentos')
+@section('title', 'Atendimentos')
 
 @section('styles')
 
@@ -17,9 +17,9 @@
 
                 <div class="card">
                     <article class="card-body">
-                        <h4 class="card-title text-center mb-4 mt-1">Atendimentos</h4>
+                        <h4 class="card-title text-center mb-4 mt-1">Novo Atendimento</h4>
                         <hr>
-                        <form action="/attendance" id="form-create-schedules" method="POST" enctype="multipart/form-data">
+                        <form action="/attendance" id="form-create-attendance" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-lg-12">
                             <div class="form-row">
@@ -27,14 +27,32 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="data" type="date" id="date" name="date">
+                                    <input class="form-control @error('date') is-invalid  @enderror" placeholder="data" type="date" id="date" name="date"> 
+                                    
+                                    @if ($errors->has('date'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('date')}}
+
+                                        </strong>
+                                    </span>
+                                    @else
+                                    
+                                    @endif
                                 </div>
 
                                 <div class="input-group col-lg-6">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fas fa-clock"></i> </span>
                                     </div>
-                                    <input class="form-control" placeholder="Hora" id="hour" name="hour" type ="time">
+                                    <input class="form-control  @error('hour') is-invalid  @enderror" placeholder="Hora" id="hour" name="hour" type ="time">
+                                    @if ($errors->has('hour'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('hour')}}
+
+                                        </strong>
+                                    </span>
+                                        
+                                    @endif
                                 </div>
                             </div>
                             </div>
@@ -44,24 +62,42 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-user"></i></span>
                                     </div>
-                                    <select class="form-control"  id="user" name="user_id">
-                                        <option value="0"></option>
+                                    <select class="form-control  @error('user_id') is-invalid  @enderror"  id="user" name="user_id">
+                                        <option></option>
                                         @foreach($users as $user)
                                          <option value="{{$user->id}}">{{$user->name}}</option>
                                          @endforeach
                                     </select>
+                                    @if ($errors->has('user_id'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('user_id')}}
+
+                                        </strong>
+                                    </span>
+                                        
+                                    @endif
                             </div>    
                             
                             <div class="input-group col-lg-6">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil"></i></span>
                                     </div>
-                                    <select id="services" class="form-control" name='services[]' placeholder="Selecione serviços" multiple>
-                                        <option value="0"></option>
+                                    <select id="services" class="form-control  @error('services') is-invalid  @enderror" name='services[]' placeholder="Selecione serviços" multiple>
+                                        
+                               
+                                    <option value="0"></option>
                                         @foreach($services as $service)
                                          <option value="{{$service->id}}">{{$service->name}}</option>
                                          @endforeach
                                     </select>
+                                    @if ($errors->has('services'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('services')}}
+
+                                        </strong>
+                                    </span>
+                                        
+                                    @endif
                             </div>                
                             
                             <div class="form-group col-lg-12">
@@ -71,7 +107,19 @@
                                         <span class="input-group-text">
                                         <i class="fas fa-pencil-ruler"></i> </span>
                                     </div>
-                                    <textarea class="form-control" id="observations" name="observations" placeholder="Observações" style="height:80px"></textarea>
+                                  
+                                  
+                                    <textarea class="form-control @error('observations') is-invalid  @enderror" id="observations" name="observations" placeholder="Observações" style="height:80px"></textarea>
+                                    @if ($errors->has('observations'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{$errors->first('observations')}}
+
+                                        </strong>
+                                    </span>
+                                        
+                                    @endif
+                                
+                                
                                 </div>
                             </div>
                             </div>
@@ -90,8 +138,19 @@
 
         </div>
 
+<script>
+new SlimSelect({
+    select: '#services',
+    placeholder: 'Selecione serviço',
+    searchingText:'Pesquisar'
+  })
 
+  new SlimSelect({
+    select: '#user',
+    placeholder: 'Selecione serviço',
+    searchingText:'Pesquisar'
+  })
 
-
-<script type="text/javascript" src="{{url('assets\js\schedules\create.js') }}"></script>
+  
+  </script>
 @endsection
