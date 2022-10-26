@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PersonalInfosRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class PersonalInfosController extends Controller
                                       'users'=>$users]);
   }
 
-  public function store(Request $request)
+  public function store(PersonalInfosRequest $request)
   {
 
     if($request->id_user == 0 ){
@@ -50,7 +51,7 @@ class PersonalInfosController extends Controller
     return redirect('/personal-infos')->with('msg', 'Informações gravado com sucesso!');
   }
 
-  public function update(Request $request, $id)
+  public function update(PersonalInfosRequest $request, $id)
   {
 
     $personalInfos = UsersPersonalInfo::where('id', $id)->first();
