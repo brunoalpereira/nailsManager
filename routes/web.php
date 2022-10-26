@@ -76,6 +76,9 @@ Route::get('/permissions/edit/{id}',[PermissionsController::class,'edit']);
 Route::put('/permissions/update/{id}',[PermissionsController::class,'update']);
 Route::delete('/permissions/delete/{id}',[PermissionsController::class,'delete']);
 
+    Route::get('/users-roles',[UserRolesController::class,'index']);
+    Route::get('/users-roles/edit/{id}',[UserRolesController::class,'edit']);
+    Route::put('/users-roles/update/{id}',[UserRolesController::class,'update']);
 
 Route::get('/user-roles',[UserRolesController::class,'index']);
 Route::get('/user-roles/create',[UserRolesController::class,'create']);
