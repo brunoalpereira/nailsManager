@@ -44,11 +44,11 @@
                             
                                 <div class="d-grid  d-lg-flex justify-content-lg-end">
                                     <form>
-                                        <a class="btn btn-secondary  mx-2" href="/attendance/edit/{{ $schedule->schedules }}">
+                                        <a class="btn btn-success  mx-2" href="/attendance/edit/{{ $schedule->schedules }}">
                                             <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                             </span>
-                                            <span class="text">Editar</span>
+                                            <span class="text">Finalizar</span>
                                         </a>
                                     </form>
                                     <form action="/schedules/cancel/{{ $schedule->schedules }}" method="POST">
