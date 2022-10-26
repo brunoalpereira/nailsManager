@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RolesRequest;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -25,7 +26,7 @@ class RoleController extends Controller
       return view('roles.create');
     }
 
-    public function store(Request $request)
+    public function store(RolesRequest $request)
     {
         $roles = new Role();
   
@@ -44,7 +45,7 @@ class RoleController extends Controller
         return view('roles.edit', ['roles' => $roles]);
     }
 
-    public function update(Request $request, $id)
+    public function update(RolesRequest $request, $id)
     {
   
       $roles = Role::where('id', $id)->first();
