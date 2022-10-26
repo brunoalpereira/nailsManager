@@ -23,7 +23,15 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> <i class="fas fa-pencil"></i> </span>
                                         </div>
-                                        <input class="form-control" placeholder="Nome" type="text" id="name" name="name">
+                                        <input class="form-control @error('name') is-invalid  @enderror" placeholder="Nome" type="text" id="name" name="name">
+                                        @if ($errors->has('name'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('name')}}
+
+                                            </strong>
+                                        </span>
+
+                                        @endif
                                     </div>
 
                                 </div>
@@ -43,4 +51,4 @@
             </div>
 
         </div>
-@endsection
+        @endsection
