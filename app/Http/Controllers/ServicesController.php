@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServicesRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Services;
@@ -15,7 +16,7 @@ class ServicesController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ServicesRequest $request)
     {
 
         $service = new Services;
@@ -40,7 +41,7 @@ class ServicesController extends Controller
 
 
 
-    public function update(Request $request, $id)
+    public function update(ServicesRequest $request, $id)
     {
 
         $services = Services::where('id', $id)->first();
