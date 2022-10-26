@@ -40,10 +40,13 @@
                     </ul>
                 </li>
 
+                @can('manage services')
+
 
                 <li class="label"></li>
                 <li><a href="/services">
                         <i class="fas fa-stream"></i> Serviços </a></li>
+                @endcan
 
                 <li class="label"></li>
                 <li><a href="#">
