@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AttendanceRequest;
 use App\Models\Schedules;
 use App\Models\Services;
 use App\Models\ServicesSchedules;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -50,10 +50,8 @@ class AttendanceController extends Controller
   
   
   
-      public function store(Request $request)
+      public function store(AttendanceRequest $request)
       {
-  
-        
   
         $schedules =DB::table('schedules')
         ->insertGetId([
@@ -94,7 +92,7 @@ class AttendanceController extends Controller
         return redirect('/attendance')->with('msg', 'Informações gravado com sucesso!');
       }
     
-      public function update(Request $request, $id)
+      public function update(AttendanceRequest $request, $id)
       {
   
         $schedules = Schedules::where('id', $id)->first();
