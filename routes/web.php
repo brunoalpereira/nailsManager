@@ -81,6 +81,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+Route::get('/register',[RegisteredUserController::class,'create'] );
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
