@@ -87,10 +87,15 @@
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="#">
+                                        <form method="POST" action="{{ route('logout') }}">
+                                           @csrf
+                                            <a href="route('logout')"
+                                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
                                                 <i class="ti-power-off"></i>
                                                 <span>Sair</span>
                                             </a>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>
