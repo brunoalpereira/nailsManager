@@ -94,17 +94,17 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                                         </div>
-                                    <input class="form-control @error('phone') is-invalid  @enderror" placeholder="Telefone" type="phone" id="phone" name="phone">
-                                    @if ($errors->has('phone'))
+                                        <input class="form-control @error('phone') is-invalid  @enderror" placeholder="Telefone" type="phone" id="phone" name="phone">
+                                        @if ($errors->has('phone'))
                                         <span class="invalid-feedback">
                                             <strong>{{$errors->first('phone')}}
 
                                             </strong>
                                         </span>
                                         @endif
-                                </div>
+                                    </div>
 
-
+                                    @role('admin|operador')
                                     <div class="input-group col-lg-6">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-user"></i></span>
@@ -123,6 +123,19 @@
                                         </span>
                                         @endif
                                     </div>
+
+                                    @else
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-user"></i></span>
+                                        </div>
+                                        <select class="form-control @error('id_user') is-invalid  @enderror" id="user" name="id_user">
+                                        
+                                            <option value="{{$user}}">{{$userName[0]->name}}</option>
+    
+                                        </select>
+
+                                    @endrole
 
 
                                 </div>

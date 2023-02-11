@@ -57,6 +57,7 @@
                             </div>
                             <div class="form-group col-lg-12">
                                 <div class="form-row">
+                                    @role('admin|operador')
                                     <div class="input-group col-lg-6">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-user"></i></span>
@@ -68,53 +69,72 @@
                                             @endforeach
                                         </select>
 
-                                        @if ($errors->has('user_id'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{$errors->first('user_id')}}
+                                        @else
 
-                                            </strong>
-                                        </span>
-                                        @endif
-                                    </div>
+                                        <div class="input-group col-lg-6">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="far fa-user"></i></span>
+                                            </div>
 
-                                    <div class="input-group col-lg-6">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-pencil"></i></span>
+
+                                            <select id="multiple_user" class="form-control @error('user_id') is-invalid  @enderror" name='user_id' placeholder="Selecione usuario">
+
+                                                <option value="{{$user}}">{{$userName[0]->name}}</option>
+
+                                            </select>
+
+
+                                            @endrole
+
+
+
+                                            @if ($errors->has('user_id'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{$errors->first('user_id')}}
+
+                                                </strong>
+                                            </span>
+                                            @endif
                                         </div>
-                                        <select id="multiple_services" class="form-control @error('services') is-invalid  @enderror" name='services[]' placeholder="Selecione serviços" multiple>
-                                            <option value="{{$schedules[0]->service_id}}" { selected }>{{$schedules[0]->service}}</option>
-                                            @foreach($services as $service)
-                                            <option value="{{$service->id}}">{{$service->name}}</option>
-                                            @endforeach
-                                        </select>
 
-                                        @if ($errors->has('services'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{$errors->first('services')}}
+                                        <div class="input-group col-lg-6">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-pencil"></i></span>
+                                            </div>
+                                            <select id="multiple_services" class="form-control @error('services') is-invalid  @enderror" name='services[]' placeholder="Selecione serviços" multiple>
+                                                <option value="{{$schedules[0]->service_id}}" { selected }>{{$schedules[0]->service}}</option>
+                                                @foreach($services as $service)
+                                                <option value="{{$service->id}}">{{$service->name}}</option>
+                                                @endforeach
+                                            </select>
 
-                                            </strong>
-                                        </span>
-                                        @endif
-                                    </div>
+                                            @if ($errors->has('services'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{$errors->first('services')}}
 
-                                    <div class="form-group col-lg-12">
-                                        <div class="form-row">
-                                            <div class="input-group col-lg-6">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-pencil-ruler"></i> </span>
+                                                </strong>
+                                            </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group col-lg-12">
+                                            <div class="form-row">
+                                                <div class="input-group col-lg-6">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-pencil-ruler"></i> </span>
+                                                    </div>
+                                                    <textarea class="form-control" id="observations" name="observations" placeholder="Observações" style="height:80px"></textarea>
                                                 </div>
-                                                <textarea class="form-control" id="observations" name="observations" placeholder="Observações" style="height:80px"></textarea>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group mt-3">
-                                        <button class="btn btn-success btn-icon-split float-left" type="submit" id="btnSubmit">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-save"></i>
-                                            </span>
-                                            <span class="text">Salvar</span>
-                                        </button>
+                                        <div class="form-group mt-3">
+                                            <button class="btn btn-success btn-icon-split float-left" type="submit" id="btnSubmit">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-save"></i>
+                                                </span>
+                                                <span class="text">Salvar</span>
+                                            </button>
                         </form>
                     </article>
                 </div>

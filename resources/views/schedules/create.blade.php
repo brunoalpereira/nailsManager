@@ -55,16 +55,31 @@
                             </div>
                             <div class="form-group col-lg-12">
                                 <div class="form-row">
-                                    <div class="input-group col-lg-6">
+                                @role('admin|operador')   
+                                <div class="input-group col-lg-6">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-user"></i></span>
                                         </div>
                                         <select class="form-control  @error('user_id') is-invalid  @enderror" id="user" name="user_id">
-                                            <option value="0"></option>
                                             @foreach($users as $user)
                                             <option value="{{$user->id}}">{{$user->name}}</option>
                                             @endforeach
                                         </select>
+
+                                        @else
+
+                                        <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-user"></i></span>
+                                        </div>
+
+                                        <select class="form-control  @error('user_id') is-invalid  @enderror" id="user" name="user_id" readonly="readonly">
+                                    
+                                         <option value="{{$user}}">{{$userName[0]->name}}</option>
+                                   
+                                        </select>
+
+                                        @endrole
 
                                         @if ($errors->has('user_id'))
                                         <span class="invalid-feedback">
@@ -74,7 +89,7 @@
                                         </span>
                                         @endif
                                     </div>
-
+                        
                                     <div class="input-group col-lg-6">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-pencil"></i></span>
