@@ -107,7 +107,7 @@
                                         @endif
                                     </div>
 
-
+                                    @role('admin|operador')
                                     <div class="input-group col-lg-6">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-user"></i></span>
@@ -118,6 +118,19 @@
                                             <option value="{{$user->id}}">{{$user->name}}</option>
                                             @endforeach
                                         </select>
+
+                                        @else
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-user"></i></span>
+                                        </div>
+                                        <select class="form-control @error('id_user') is-invalid  @enderror" id="user" name="id_user">
+                                        
+                                            <option value="{{$user}}">{{$userName[0]->name}}</option>
+    
+                                        </select>
+
+                                    @endrole
 
                                         @if ($errors->has('id_user'))
                                         <span class="invalid-feedback">
