@@ -36,6 +36,7 @@ class AttendanceController extends Controller
                     'users.name as user',
                     'schedules.status as status')
           ->where('schedules.deleted_at',null)
+          ->orderBy('schedules.status')
           ->orderByDesc('schedules.date')
           ->orderByDesc('schedules.hour')
           ->get()
@@ -87,7 +88,6 @@ class AttendanceController extends Controller
             'updated_at'=>Carbon::now()
           ]);
     
-  
   
         return redirect('/attendance')->with('msg', 'Informações gravado com sucesso!');
       }
