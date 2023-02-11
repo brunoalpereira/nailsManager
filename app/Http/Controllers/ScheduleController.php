@@ -20,9 +20,22 @@ class ScheduleController extends Controller
       $services = Services::all();
 
       $users = User::all();
+     
+      $user = Auth::id();
+
+      $userName = DB::table('users')
+      ->select('name')
+      ->where('id',$user)
+      ->get();
+
+
+
       return view('schedules.create',
                  ['services'=> $services,
-                 'users'=>$users]);
+                 'users'=>$users,
+                 'user'=>$user,
+                 'userName'=>$userName
+              ]);
     }
 
 
@@ -43,7 +56,7 @@ class ScheduleController extends Controller
         array_push($roles,$userRole->name);
       }
       
-      if(in_array('Admin',$roles) || in_array('operador',$roles)){
+      if(in_array('admin',$roles) || in_array('operador',$roles)){
       
         $schedules=DB::table('schedules')
         ->join('users','schedules.user_id','=','users.id')
@@ -176,6 +189,14 @@ class ScheduleController extends Controller
     public function edit($id)
     {
 
+      $user = Auth::id();
+
+      $userName = DB::table('users')
+      ->select('name')
+      ->where('id',$user)
+      ->get();
+
+
       $schedules = DB::table('schedules')
       ->join('services_schedules','schedules.id','services_schedules.schedules_id')
       ->join('services','services.id','services_schedules.service_id')
@@ -197,7 +218,10 @@ class ScheduleController extends Controller
 
         return view('schedules.edit', ['schedules' => $schedules,
                                       'services' => $services,
-                                      'users'=>$users]);
+                                      'users'=>$users,
+                                      'user'=>$user,
+                                      'userName'=>$userName
+                                    ]);
     }
     
 }
