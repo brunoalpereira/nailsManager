@@ -37,10 +37,17 @@
                                 <label class="card-text col-lg-2" >Hora
                                 <h6>{{ $schedule->hour }}</h6>
                                 </label>
-
-                                <label class="card-text col-lg-2" >Status
+                                @if ( $schedule->status  =='Finalizado')
+                                <label class="card-text col-lg-2">Status
+                                <h6><span class="badge badge-success">{{ $schedule->status }}</span></h6>
+                                </label>
+                                @elseif ( $schedule->status =='agendado')
+                                <label class="card-text col-lg-2">Status
                                 <h6><span class="badge badge-primary">{{ $schedule->status }}</span></h6>
                                 </label>
+                                
+                                @endif
+                              
                             
                                 <div class="d-grid  d-lg-flex justify-content-lg-end">
                                     <form>
