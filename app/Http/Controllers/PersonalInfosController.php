@@ -14,19 +14,37 @@ class PersonalInfosController extends Controller
 
   public function create()
   {
+    $user = Auth::id();
+
+    $userName = DB::table('users')
+    ->select('name')
+    ->where('id',$user)
+    ->get();
+
      $users = User::all();
 
-    return view('personalInfos.create',['users'=>$users]);
+    return view('personalInfos.create',['users'=>$users,
+    'user'=>$user,
+    'userName'=>$userName]);
   }
 
   public function edit($id)
   {
 
+    $user = Auth::id();
+
+    $userName = DB::table('users')
+    ->select('name')
+    ->where('id',$user)
+    ->get();
+
     $personalInfos = UsersPersonalInfo::findOrFail($id);
     $users = User::all();
 
     return view('personalInfos.edit', ['personalInfos' => $personalInfos,
-                                      'users'=>$users]);
+                                      'users'=>$users,
+                                      'user'=>$user,
+                                      'userName'=>$userName]);
   }
 
   public function store(PersonalInfosRequest $request)
@@ -76,9 +94,12 @@ class PersonalInfosController extends Controller
 
   public function index()
   {
+
+
     $user = Auth::id();
     $roles = [];
 
+    
     $userRoles = DB::table('users')
     ->join('model_has_roles','model_has_roles.model_id','=','users.id')
     ->join('roles','model_has_roles.role_id','=','roles.id')
@@ -90,7 +111,7 @@ class PersonalInfosController extends Controller
       array_push($roles,$userRole->name);
     }
     
-    if(in_array('Admin',$roles) || in_array('operador',$roles)){
+    if(in_array('admin',$roles) || in_array('operador',$roles)){
       
       $personalInfos =DB::table('user_personal_infos')
       ->join('users','users.id','=','user_personal_infos.id_user')
@@ -103,11 +124,17 @@ class PersonalInfosController extends Controller
 
 
     } else{
-      $personalInfos = UsersPersonalInfo::where('id_user',$user)
-      ->where('deleted_at',null);
-    }
 
-   
+      $personalInfos =DB::table('user_personal_infos')
+      ->join('users','users.id','=','user_personal_infos.id_user')
+      ->select('user_personal_infos.phone',
+              'user_personal_infos.id',
+            'user_personal_infos.address',
+            'users.name')
+            ->where('deleted_at',null)
+            ->where('id_user',$user)
+      ->get();
+    }
 
     return view(
       'personalInfos.index',
