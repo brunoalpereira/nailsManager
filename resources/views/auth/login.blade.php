@@ -45,9 +45,9 @@
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-block"> Login </button>
                                 </div>
-                                @if (Route::has('password.request'))
-                                <a class="underline text-center text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                                    {{ __('Esqueceu senha?') }}
+                                @if (Route::has('register'))
+                                <a class="underline text-center text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                                    {{ __('Cadastrar ?') }}
                                 </a>
                                 @endif
                         </form>
