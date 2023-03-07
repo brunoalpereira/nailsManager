@@ -35,3 +35,23 @@ class ReportController extends Controller
 
         return $pdf->setPaper('a4')->stream('serviços.pdf');
     }
+
+    public function totalServicesByOperators()
+    {
+
+        $services = DB::table('attendance')
+        ->join('users', 'users.id', 'attendance.operator_id')
+        ->where('attendance.is_finished', 1)
+        ->select(
+            'users.name',
+            DB::raw('count(users.name) as qtd ')
+        )
+            ->groupBy('users.name')
+            ->orderByDesc('qtd')
+            ->get()
+            ->toArray();
+
+        $pdf = PDF::loadView('reports.servicesTotaByOperatorsReport', compact('services'));
+
+        return $pdf->setPaper('a4')->stream('serviços.pdf');
+    }
