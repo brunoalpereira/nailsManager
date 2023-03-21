@@ -1,3 +1,11 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Services;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 class ReportController extends Controller
@@ -27,14 +35,12 @@ class ReportController extends Controller
          ->get()
          ->toArray();    
 
-         $teste = Carbon::now();
-         
-            
-
          $pdf =PDF::loadView('reports.servicesTotalReport',compact('services'));
 
         return $pdf->setPaper('a4')->stream('serviços.pdf');
     }
+
+
 
     public function totalServicesByOperators()
     {
@@ -56,6 +62,8 @@ class ReportController extends Controller
         return $pdf->setPaper('a4')->stream('serviços.pdf');
     }
 
+
+
     public function totalServicesMonth(){
         $today = Carbon::now();
 
@@ -75,6 +83,8 @@ class ReportController extends Controller
 
         return $pdf->setPaper('a4')->stream('serviços.pdf');
     }
+
+
 
     public function totalServicesByOperatorsMonth()
     {
@@ -96,6 +106,7 @@ class ReportController extends Controller
 
         return $pdf->setPaper('a4')->stream('serviços.pdf');
     }
+
 
     public function totalValueServices (){
         $services = DB::table('attendance')
@@ -125,3 +136,40 @@ class ReportController extends Controller
 
         return $pdf->setPaper('a4')->stream('serviços.pdf');
     }
+
+
+
+    public function totalValueMonthServices()
+    {
+        $today = Carbon::now();
+
+        $services = DB::table('attendance')
+        ->join('schedules','attendance.schedules_id','schedules.id')
+        ->join('services_schedules','services_schedules.schedules_id','schedules.id')
+        ->join('services','services.id','services_schedules.service_id')
+        ->where('attendance.is_finished',1)
+        ->where(DB::raw('month( attendance.created_at)'),$today->month)
+        ->select('services.name as name',
+            DB::raw('count(services.id) as qtd '),
+                    'services.value as value')
+         ->groupBy('services.name',
+                    'services.value')
+         ->orderByDesc('qtd')
+         ->get()
+         ->toArray();
+         $totalGeral = 0;
+         foreach($services as $service){
+            $total = $service->value * $service->qtd;
+            $service->total = $total;
+
+            $totalGeral+= $service->total;
+         }
+
+
+
+         $pdf =PDF::loadView('reports.servicesTotalMonthValueReport',compact('services','totalGeral'));
+
+        return $pdf->setPaper('a4')->stream('serviços.pdf');
+    }
+          
+}
