@@ -5,6 +5,7 @@ use App\Http\Controllers\PermissionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\PersonalInfosController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserRolesController;
@@ -74,6 +75,14 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/users-roles/update/{id}',[UserRolesController::class,'update']);
     });
 
+ Route::get('/reports',[ReportController::class,'index']);
+
+ Route::get('/reports/services-total',[ReportController::class,'totalServices']);
+ Route::get('/reports/services-total-operators',[ReportController::class,'totalServicesByOperators']);
+ Route::get('/reports/services-total-month',[ReportController::class,'totalServicesMonth']);
+ Route::get('/reports/services-total-operators-current-month',[ReportController::class,'totalServicesByOperatorsMonth']);
+ Route::get('/reports/services-total-value',[ReportController::class,'totalValueServices']);
+ Route::get('/reports/services-total-month-value',[ReportController::class,'totalValueMonthServices']);
 
 });
 
