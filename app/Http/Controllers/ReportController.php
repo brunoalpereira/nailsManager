@@ -75,3 +75,24 @@ class ReportController extends Controller
 
         return $pdf->setPaper('a4')->stream('serviços.pdf');
     }
+
+    public function totalServicesByOperatorsMonth()
+    {
+        $today = Carbon::now();
+        $services = DB::table('attendance')
+        ->join('users', 'users.id', 'attendance.operator_id')
+        ->where('attendance.is_finished', 1)
+        ->where(DB::raw('month( attendance.created_at)'),$today->month)
+        ->select(
+            'users.name',
+            DB::raw('count(users.name) as qtd ')
+        )
+            ->groupBy('users.name')
+            ->orderByDesc('qtd')
+            ->get()
+            ->toArray();
+
+        $pdf = PDF::loadView('reports.servicesTotaByOperatorsMonthReport', compact('services'));
+
+        return $pdf->setPaper('a4')->stream('serviços.pdf');
+    }
