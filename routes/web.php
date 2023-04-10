@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
@@ -29,6 +30,10 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/personal-infos/update/{id}', [PersonalInfosController::class, 'update']);
     Route::get('/personal-infos', [PersonalInfosController::class,'index']);
     Route::delete('/personal-infos/delete/{id}',[PersonalInfosController::class,'delete']);
+
+
+    Route::get('/dashboard', [DashboardController::class,'index']);
+
 });
 
     Route::get('/schedules/create',[ScheduleController::class, 'create']);
@@ -56,25 +61,25 @@ Route::middleware(['auth'])->group(function () {
     });
    
     Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('/roles',[RoleController::class,'index']);
-    Route::get('/roles/create',[RoleController::class,'create']);
-    Route::post('/roles',[RoleController::class,'store']);
-    Route::get('/roles/edit/{id}',[RoleController::class,'edit']);
-    Route::put('/roles/update/{id}',[RoleController::class,'update']);
-    Route::delete('/roles/delete/{id}',[RoleController::class,'delete']);
-
-    Route::get('/permissions',[PermissionsController::class,'index']);
-    Route::get('/permissions/create',[PermissionsController::class,'create']);
-    Route::post('/permissions',[PermissionsController::class,'store']);
-    Route::get('/permissions/edit/{id}',[PermissionsController::class,'edit']);
-    Route::put('/permissions/update/{id}',[PermissionsController::class,'update']);
-    Route::delete('/permissions/delete/{id}',[PermissionsController::class,'delete']);
-
-    Route::get('/users-roles',[UserRolesController::class,'index']);
-    Route::get('/users-roles/edit/{id}',[UserRolesController::class,'edit']);
-    Route::put('/users-roles/update/{id}',[UserRolesController::class,'update']);
+        Route::get('/roles',[RoleController::class,'index']);
+        Route::get('/roles/create',[RoleController::class,'create']);
+        Route::post('/roles',[RoleController::class,'store']);
+        Route::get('/roles/edit/{id}',[RoleController::class,'edit']);
+        Route::put('/roles/update/{id}',[RoleController::class,'update']);
+        Route::delete('/roles/delete/{id}',[RoleController::class,'delete']);
+    
+        Route::get('/permissions',[PermissionsController::class,'index']);
+        Route::get('/permissions/create',[PermissionsController::class,'create']);
+        Route::post('/permissions',[PermissionsController::class,'store']);
+        Route::get('/permissions/edit/{id}',[PermissionsController::class,'edit']);
+        Route::put('/permissions/update/{id}',[PermissionsController::class,'update']);
+        Route::delete('/permissions/delete/{id}',[PermissionsController::class,'delete']);
+    
+        Route::get('/users-roles',[UserRolesController::class,'index']);
+        Route::get('/users-roles/edit/{id}',[UserRolesController::class,'edit']);
+        Route::put('/users-roles/update/{id}',[UserRolesController::class,'update']);
     });
-
+   
  Route::get('/reports',[ReportController::class,'index']);
 
  Route::get('/reports/services-total',[ReportController::class,'totalServices']);
@@ -84,6 +89,9 @@ Route::middleware(['auth'])->group(function () {
  Route::get('/reports/services-total-value',[ReportController::class,'totalValueServices']);
  Route::get('/reports/services-total-month-value',[ReportController::class,'totalValueMonthServices']);
 
+
+    Route::get('/pdf',[ReportController::class,'geraPdf']);
+
 });
 
 Route::get('/', function () {
@@ -92,8 +100,8 @@ Route::get('/', function () {
 
 
 Route::get('/register',[RegisteredUserController::class,'create'] );
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+
+
 
 require __DIR__.'/auth.php';
