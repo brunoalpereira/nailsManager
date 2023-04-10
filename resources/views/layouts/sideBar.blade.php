@@ -3,7 +3,7 @@
     <div class="nano">
         <div class="nano-content">
             <ul>
-                <div class="logo"><a href="index.html">
+                <div class="logo"><a href="dashboard">
                         <i class="fas fa-paint-brush me-2"></i>
                         <span>Nails Manager</span>
                 </div>
@@ -57,9 +57,9 @@
                 <li><a href="/reports">
                         <i class="fas fa-file-alt"></i> Relatórios </a></li>
 
-                <li class="label"></li>
+                <!-- <li class="label"></li>
                 <li><a href="#">
-                        <i class="fas fa-chart-line"></i> Gráficos </a></li>
+                        <i class="fas fa-chart-line"></i> Gráficos </a></li> -->
                         @endrole
 
             </ul>
