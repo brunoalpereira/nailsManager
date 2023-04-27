@@ -78,16 +78,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users-roles',[UserRolesController::class,'index']);
         Route::get('/users-roles/edit/{id}',[UserRolesController::class,'edit']);
         Route::put('/users-roles/update/{id}',[UserRolesController::class,'update']);
+
+        Route::get('/reports',[ReportController::class,'index']);
+
+        Route::get('/reports/services-total',[ReportController::class,'totalServices']);
+        Route::get('/reports/services-total-operators',[ReportController::class,'totalServicesByOperators']);
+        Route::get('/reports/services-total-month',[ReportController::class,'totalServicesMonth']);
+        Route::get('/reports/services-total-operators-current-month',[ReportController::class,'totalServicesByOperatorsMonth']);
+        Route::get('/reports/services-total-value',[ReportController::class,'totalValueServices']);
+        Route::get('/reports/services-total-month-value',[ReportController::class,'totalValueMonthServices']);
     });
    
- Route::get('/reports',[ReportController::class,'index']);
 
- Route::get('/reports/services-total',[ReportController::class,'totalServices']);
- Route::get('/reports/services-total-operators',[ReportController::class,'totalServicesByOperators']);
- Route::get('/reports/services-total-month',[ReportController::class,'totalServicesMonth']);
- Route::get('/reports/services-total-operators-current-month',[ReportController::class,'totalServicesByOperatorsMonth']);
- Route::get('/reports/services-total-value',[ReportController::class,'totalValueServices']);
- Route::get('/reports/services-total-month-value',[ReportController::class,'totalValueMonthServices']);
 
 
     Route::get('/pdf',[ReportController::class,'geraPdf']);
