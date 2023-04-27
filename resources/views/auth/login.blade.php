@@ -42,6 +42,21 @@
                                         <span class="ml-2 text-sm text-gray-600">{{ __('lembrar-se') }}</span>
                                     </label>
                                 </div>
+
+                                <div class="col-sm-12 container-login">
+                                    @if($errors->any())
+
+                                    <ul class="list-group">
+
+                                        @foreach($errors->all() as $error)
+
+                                        <li class="list-group-item list-group-item-danger">{{$error}}</li>
+
+                                        @endforeach
+
+                                    </ul>
+                                    @endif
+                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-block"> Login </button>
                                 </div>
