@@ -3,44 +3,64 @@
     <div class="nano">
         <div class="nano-content">
             <ul>
-                <div class="logo"><a href="index.html">
+                <div class="logo"><a href="dashboard">
                         <i class="fas fa-paint-brush me-2"></i>
                         <span>Nails Manager</span>
                 </div>
 
+                @can('manage attendance')
                 <li class="label"></li>
                 <li><a href="/attendance">
                         <i class="far fa-bookmark"></i> Atendimentos </a></li>
-
+                @endcan
                 <li class="label"></li>
                 <li><a href="/schedules">
                         <i class="fas fa-address-book"></i> Agendamentos </a></li>
+          
 
+                    @can('manage users')
                 <li><a class="sidebar-sub-toggle">
                         <i class="far fa-user">
                         </i> Usuários
                         <span class="sidebar-collapse-icon ti-angle-down">
                         </span>
                     </a>
-
                     <ul>
                         <li><a href="/personal-infos"><i class="far fa-address-card"></i>Cadastro Informações</a></li>
                     </ul>
+              
+
+                    @role('admin')
+                    <ul>
+                        <li><a href="/roles"><i class="fas fa-briefcase"></i>Cadastro de cargos</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><a href="/permissions"><i class="fas fa-lock"></i>Cadastro de permissões</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><a href="/users-roles"><i class="fas fa-user-tag"></i>Atribuir cargos</a></li>
+                    </ul>
+                    @endrole
                 </li>
 
+                @endcan
 
+                @can('manage services')
                 <li class="label"></li>
                 <li><a href="/services">
                         <i class="fas fa-stream"></i> Serviços </a></li>
-
+                @endcan
+                @role('admin')
                 <li class="label"></li>
-                <li><a href="#">
+                <li><a href="/reports">
                         <i class="fas fa-file-alt"></i> Relatórios </a></li>
 
-                <li class="label"></li>
+                <!-- <li class="label"></li>
                 <li><a href="#">
-                        <i class="fas fa-chart-line"></i> Gráficos </a></li>
-
+                        <i class="fas fa-chart-line"></i> Gráficos </a></li> -->
+                        @endrole
 
             </ul>
 
@@ -72,10 +92,15 @@
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="#">
+                                        <form method="POST" action="{{ route('logout') }}">
+                                           @csrf
+                                            <a href="route('logout')"
+                                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
                                                 <i class="ti-power-off"></i>
                                                 <span>Sair</span>
                                             </a>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>

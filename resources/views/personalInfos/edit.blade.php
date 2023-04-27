@@ -1,10 +1,15 @@
 @extends('layouts.main')
 @section('title', 'Informações')
 
+@section('styles')
 
- @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css" rel="stylesheet">
+</link>
+
+@section('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @section('content')
 
 <div class="content-wrap ">
@@ -20,73 +25,132 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group col-lg-12">
-                            <div class="form-row">
-                                <div class="input-group col-lg-6">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-map-marked"></i></span>
-                                    </div>
-                                    <input class="form-control" placeholder="Endereço" type="text" id="address" name="address" value="{{ $personalInfos->address }}">
-                                </div>
+                                <div class="form-row">
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-map-marked"></i></span>
+                                        </div>
+                                        <input class="form-control @error('address') is-invalid  @enderror" placeholder="Endereço" type="text" id="address" name="address" value="{{ $personalInfos->address }}">
+                                        @if ($errors->has('address'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('address')}}
 
-                                <div class="input-group col-lg-6">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"> <i class="fas fa-pen"></i> </span>
+                                            </strong>
+                                        </span>
+                                        @endif
                                     </div>
-                                    <input class="form-control" placeholder="Complemento" id="complement" name="complement" value="{{ $personalInfos->complement }}">
+
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fas fa-pen"></i> </span>
+                                        </div>
+                                        <input class="form-control @error('complement') is-invalid  @enderror" placeholder="Complemento" id="complement" name="complement" value="{{ $personalInfos->complement }}">
+                                        @if ($errors->has('complement'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('complement')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
                             </div>
 
 
                             <div class="form-group col-lg-12">
-                            <div class="form-row">
-                                <div class="input-group col-lg-6">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"> <i class="fas fa-envelope"></i></span>
-                                    </div>
-                                    <input class="form-control" placeholder="Cep" type="text" id="cep" name="cep" value="{{ $personalInfos->cep }}">
-                                </div>
+                                <div class="form-row">
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fas fa-envelope"></i></span>
+                                        </div>
+                                        <input class="form-control @error('cep') is-invalid  @enderror" placeholder="Cep" type="text" id="cep" name="cep" value="{{ $personalInfos->cep }}">
+                                        @if ($errors->has('cep'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('cep')}}
 
-                                <div class="input-group col-lg-6">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"> <i class="fas fa-house-user"></i> </span>
+                                            </strong>
+                                        </span>
+                                        @endif
                                     </div>
-                                    <input class="form-control" placeholder="Numero Residencia" id="address_number" name="address_number" value="{{ $personalInfos->address_number }}">
+
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fas fa-house-user"></i> </span>
+                                        </div>
+                                        <input class="form-control @error('address_number') is-invalid  @enderror" placeholder="Numero Residencia" id="address_number" name="address_number" value="{{ $personalInfos->address_number }}">
+                                    
+                                        @if ($errors->has('address_number'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('address_number')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
                             </div>
 
 
                             <div class="form-group col-lg-12">
-                            <div class="form-row">
-                                <div class="input-group col-lg-6">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                <div class="form-row">
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                        </div>
+                                        <input class="form-control @error('phone') is-invalid  @enderror" placeholder="Telefone" type="phone" id="phone" name="phone" value="{{ $personalInfos->phone }}">
+                                        @if ($errors->has('phone'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('phone')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
                                     </div>
-                                    <input class="form-control" placeholder="Telefone" type="phone" id="phone" name="phone" value="{{ $personalInfos->phone }}">
+
+                                    @role('admin|operador')
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-user"></i></span>
+                                        </div>
+                                        <select class="form-control @error('id_user') is-invalid  @enderror" id="user" name="id_user">
+                                            <option value="0"></option>
+                                            @foreach($users as $user)
+                                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                            @endforeach
+                                        </select>
+
+                                        @else
+                                    <div class="input-group col-lg-6">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-user"></i></span>
+                                        </div>
+                                        <select class="form-control @error('id_user') is-invalid  @enderror" id="user" name="id_user">
+                                        
+                                            <option value="{{$user}}">{{$userName[0]->name}}</option>
+    
+                                        </select>
+
+                                    @endrole
+
+                                        @if ($errors->has('id_user'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('id_user')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
+
                                 </div>
 
-
-                                <div class="input-group col-lg-6">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-user"></i></span>
-                                    </div>
-                                    <select class="form-control" placeholder="Usuario"  id="user" name="user" >
-                                        <option value="1">teste</option>
-                                        <option value="2">require_once</option>
-                                    </select>
-                                </div>
-
-
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <button class="btn btn-success btn-icon-split float-left" type="submit" id="btnSubmit">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-save"></i>
-                                    </span>
-                                    <span class="text">Salvar</span>
-                                </button>
+                                <div class="form-group mt-3">
+                                    <button class="btn btn-success btn-icon-split float-left" type="submit" id="btnSubmit">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-save"></i>
+                                        </span>
+                                        <span class="text">Salvar</span>
+                                    </button>
                         </form>
                     </article>
                 </div>
@@ -98,5 +162,11 @@
 
 
 
-<!-- <script type="text/javascript" src="{{url('assets\js\personal-infos\index.js') }}"></script> -->
-@endsection
+        <script>
+            new SlimSelect({
+                select: '#user',
+                placeholder: 'Selecione usuário',
+                searchingText: 'Pesquisar'
+            })
+        </script>
+        @endsection

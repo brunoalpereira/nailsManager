@@ -29,10 +29,13 @@
                     <div class="card mt-2">
                         <div class="card-body">
                             <div class="d-flex flex-column flex-md-row justify-content-between">
-
                                 <a class="card-title col-lg-2" href="/personal-infos/edit/{{ $info->id }}">{{ $info->name }}</a>
-                                <label class="card-text col-lg-2" >Valor
-                                <!-- <h6 >{{ 'R$ : '. $info->value}}                     -->
+                                <label class="card-text col-lg-2" >Endereço
+                                <h6 >{{$info->address}}                    
+                                </h6> 
+                                </label>
+                                <label class="card-text col-lg-2" >Telefone
+                                <h6 >{{$info->phone}}                    
                                 </h6> 
                                 </label>
                             

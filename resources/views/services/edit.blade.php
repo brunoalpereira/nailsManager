@@ -24,14 +24,28 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> <i class="fas fa-pencil"></i> </span>
                                         </div>
-                                        <input class="form-control" placeholder="Nome" type="text" id="name" name="name" value="{{ $services->name }}">
+                                        <input class="form-control form-control @error('name') is-invalid  @enderror" placeholder="Nome" type="text" id="name" name="name" value="{{ $services->name }}">
+                                        @if ($errors->has('name'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('name')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
                                     </div>
 
                                     <div class="input-group col-lg-6">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> <i class="fas fa-money-bill"></i> </span>
                                         </div>
-                                        <input class="form-control" placeholder="Valor" id="password" name="value" value="{{ $services->value }}">
+                                        <input class="form-control form-control @error('value') is-invalid  @enderror" placeholder="Valor" id="password" name="value" value="{{ $services->value }}">
+                                        @if ($errors->has('value'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('value')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +60,15 @@
 
                                                 <i class="fas fa-pencil-ruler"></i> </span>
                                         </div>
-                                        <textarea class="form-control" id="description" name="description" placeholder="Descrição" style="height:80px">{{ $services->description}}</textarea>
+                                        <textarea class="form-control @error('description') is-invalid  @enderror" id="description" name="description" placeholder="Descrição" style="height:80px">{{ $services->description}}</textarea>
+                                        @if ($errors->has('description'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{$errors->first('description')}}
+
+                                            </strong>
+                                        </span>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
