@@ -12,7 +12,13 @@ class PermissionsController extends Controller
 {
     public function index ()
     {
-     $permissions = Permission::all();
+    $permissions = DB::table('permissions')->select(
+      'permissions.id as id',
+      'permissions.name as nome'
+    )
+    ->get()
+    ->toArray();
+     
      return view('permissions.index',['permissions'=>$permissions]);
     }
  
