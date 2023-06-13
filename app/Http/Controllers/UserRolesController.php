@@ -11,7 +11,12 @@ class UserRolesController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users =  DB::table('users')->select(
+          'users.id as id',
+          'users.name as nome'
+        )
+        ->get()
+        ->toArray();
         return view('usersRoles.index',['users'=>$users]);
     }
 
