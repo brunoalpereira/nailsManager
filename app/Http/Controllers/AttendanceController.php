@@ -30,10 +30,13 @@ class AttendanceController extends Controller
         
           $schedules=DB::table('schedules')
           ->join('users','schedules.user_id','=','users.id')
-          ->select('schedules.id as schedules',
-                    'schedules.date as date',
-                    'schedules.hour as hour',
-                    'users.name as user',
+          ->join('services_schedules','services_schedules.schedules_id','schedules.id')
+          ->join('services','services.id','services_schedules.service_id')
+          ->select('schedules.id as id',
+          DB::raw("DATE_FORMAT(schedules.date,'%d/%m/%Y')as data"),
+                    'schedules.hour as hora',
+                    'users.name as nome',
+                    'services.name as serviço',
                     'schedules.status as status')
           ->where('schedules.deleted_at',null)
           ->orderBy('schedules.status')
