@@ -6,7 +6,7 @@ use App\Http\Requests\ServicesRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Services;
-
+use Illuminate\Support\Facades\DB;
 
 class ServicesController extends Controller
 {
@@ -58,7 +58,12 @@ class ServicesController extends Controller
     public function index()
     {
 
-        $services = Services::all();
+        $services = DB::table('services')
+        ->select('services.id as id',
+                'services.name as nome',
+            'services.value as valor')
+        ->get()
+        ->toArray();
 
         return view(
             'services.index',
