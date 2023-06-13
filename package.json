@@ -21,6 +21,7 @@
         "tailwindcss": "^3.0.18"
     },
     "dependencies": {
-        "chartjs": "^0.3.24"
+        "chartjs": "^0.3.24",
+        "gridjs": "^6.0.6"
     }
 }
