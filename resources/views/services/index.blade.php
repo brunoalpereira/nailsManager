@@ -59,19 +59,19 @@
                                             </span>
                                             <span class="text">Editar</span>
                                         </a>`)
-                // }, {
-                //     name: '',
-                //     formatter: (cell, row) =>
+                }, {
+                    name: '',
+                    formatter: (cell, row) =>
 
-                //         gridjs.html(`<form action="/services/delete/${row.cells[0].data}" method="POST">
-                //                 @csrf
-                //                 @method('DELETE')
-                //                         <button type="submit" class="btn btn-danger delete-btn">
-                //                             <span class="icon text-white-50">
-                //                             <i class="fas fa-trash"></i>
-                //                             </span>
-                //                             <span class="text">Excluir</span></button>
-                //                             </form>`)
+                        gridjs.html(`<form action="/services/delete/${row.cells[0].data}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                        <button type="submit" class="btn btn-danger delete-btn">
+                                            <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Excluir</span></button>
+                                            </form>`)
                 },
             ],
             data: serviceName,

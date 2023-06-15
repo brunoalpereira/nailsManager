@@ -62,6 +62,7 @@ class ServicesController extends Controller
         ->select('services.id as id',
                 'services.name as nome',
             'services.value as valor')
+            ->where('deleted_at',null)
         ->get()
         ->toArray();
 
