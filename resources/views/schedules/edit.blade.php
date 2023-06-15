@@ -102,10 +102,14 @@
                                                 <span class="input-group-text"><i class="fas fa-pencil"></i></span>
                                             </div>
                                             <select id="multiple_services" class="form-control @error('services') is-invalid  @enderror" name='services[]' placeholder="Selecione serviços" multiple>
-                                                @foreach ($schedules as $schedule )
-                                                <option value="{{$schedule->service_id}}" { selected }>{{$schedule->service}}</option>
-                                                @endforeach
+                                            @foreach ($schedules as $schedule )
+                                            <option value="{{$schedule->service_id}}" { selected }>{{$schedule->service}}</option>
+                                            @endforeach
 
+
+                                            @foreach($services as $service)
+                                            <option value="{{$service->id}}">{{$service->name}}</option>
+                                            @endforeach
                                             </select>
 
                                             @if ($errors->has('services'))
