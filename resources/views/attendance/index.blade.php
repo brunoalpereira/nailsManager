@@ -65,20 +65,20 @@
                                             <span class="text">Finalizar</span>
                                         </a>`)
                                 },
-                                {
-                                    name: 'Cancelar',
-                                    formatter: (cell, row) =>
+                                    // {
+                                    //     name: 'Cancelar',
+                                    //     formatter: (cell, row) =>
 
-                                        gridjs.html(`<form action="/schedules/cancel/${row.cells[0].data}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                        <button type="submit" class="btn btn-danger delete-btn">
-                                            <span class="icon text-white-50">
-                                            <i class="fas fa-cancel"></i>
-                                            </span>
-                                            <span class="text">Cancelar</span></button>
-                                            </form>`)
-                                }
+                                    //         gridjs.html(`<form action="/schedules/cancel/${row.cells[0].data}" method="POST">
+                                    // @csrf
+                                    // @method('DELETE')
+                                    //         <button type="submit" class="btn btn-danger delete-btn">
+                                    //             <span class="icon text-white-50">
+                                    //             <i class="fas fa-cancel"></i>
+                                    //             </span>
+                                    //             <span class="text">Cancelar</span></button>
+                                    //             </form>`)
+                                    // }
                             ],
                             data: schedules,
                             language: {
