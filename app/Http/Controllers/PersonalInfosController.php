@@ -115,10 +115,10 @@ class PersonalInfosController extends Controller
       
       $personalInfos =DB::table('user_personal_infos')
       ->join('users','users.id','=','user_personal_infos.id_user')
-      ->select('user_personal_infos.phone',
-              'user_personal_infos.id',
-            'user_personal_infos.address',
-            'users.name')
+      ->select('user_personal_infos.phone as telefone',
+              'user_personal_infos.id as id',
+            'user_personal_infos.address as  endereço',
+            'users.name as nome')
             ->where('deleted_at',null)
       ->get();
 
@@ -127,10 +127,10 @@ class PersonalInfosController extends Controller
 
       $personalInfos =DB::table('user_personal_infos')
       ->join('users','users.id','=','user_personal_infos.id_user')
-      ->select('user_personal_infos.phone',
-              'user_personal_infos.id',
-            'user_personal_infos.address',
-            'users.name')
+      ->select('user_personal_infos.phone as telefone',
+              'user_personal_infos.id as id',
+            'user_personal_infos.address as endereço',
+            'users.name as nome')
             ->where('deleted_at',null)
             ->where('id_user',$user)
       ->get();

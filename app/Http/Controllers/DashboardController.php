@@ -21,7 +21,7 @@ class DashboardController extends Controller
     $attendanceToday = DB::table('schedules')
     ->where('schedules.status','agendado')
     ->where(DB::raw('day(schedules.date)'),$today->day)
-    ->select(DB::raw('count(schedules.id) as qtd '))
+    ->select(DB::raw('count(schedules.id) as qtd'))
      ->orderByDesc('qtd')
      ->get()
      ->toArray(); 
@@ -31,7 +31,7 @@ class DashboardController extends Controller
      $attendanceMonth = DB::table('schedules')
     ->where('schedules.status','agendado')
     ->where(DB::raw('month(schedules.date)'),$today->month)
-    ->where(DB::raw('day(schedules.date)'), '>=', $today->day)
+    // ->where(DB::raw('day(schedules.date)'), '>=', $today->day)
     ->select(DB::raw('count(schedules.id) as qtd '))
      ->orderByDesc('qtd')
      ->get()

@@ -31,8 +31,8 @@
               
 
                     @role('admin')
-                    <ul>
-                        <li><a href="/roles"><i class="fas fa-briefcase"></i>Cadastro de cargos</a></li>
+                    <ul class=" d-none">
+                        <li><a href="/roles"><i class="fas fa-briefcase d-none"></i>Cadastro de cargos</a></li>
                     </ul>
 
                     <ul>
@@ -56,10 +56,6 @@
                 <li class="label"></li>
                 <li><a href="/reports">
                         <i class="fas fa-file-alt"></i> Relatórios </a></li>
-
-                <!-- <li class="label"></li>
-                <li><a href="#">
-                        <i class="fas fa-chart-line"></i> Gráficos </a></li> -->
                         @endrole
 
             </ul>
